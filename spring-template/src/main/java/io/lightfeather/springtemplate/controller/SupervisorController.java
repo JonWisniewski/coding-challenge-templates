@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -20,7 +21,7 @@ public class SupervisorController {
 	@Value("${io.lightfeather.get.supervisor.url}")
 	private String getSupervisors;
 	
-	@RequestMapping("/test")
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String home() {
 		return "Hello World";
 	}
