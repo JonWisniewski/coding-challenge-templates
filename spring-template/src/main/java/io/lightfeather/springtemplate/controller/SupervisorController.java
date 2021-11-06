@@ -14,11 +14,16 @@ import io.lightfeather.springtemplate.constants.URI;
 import io.lightfeather.springtemplate.model.Supervisor;
 import reactor.core.publisher.Mono;
 
-@RestController
+@RestController("api")
 public class SupervisorController {
 	
 	@Value("${io.lightfeather.get.supervisor.url}")
 	private String getSupervisors;
+	
+	@RequestMapping("/test")
+	public String home() {
+		return "Hello World";
+	}
 	
 	@Autowired
 	private WebClient.Builder webClientBuilder;
