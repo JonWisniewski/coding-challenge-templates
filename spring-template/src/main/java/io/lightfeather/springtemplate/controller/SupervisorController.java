@@ -14,7 +14,7 @@ import io.lightfeather.springtemplate.constants.URI;
 import io.lightfeather.springtemplate.model.Supervisor;
 import reactor.core.publisher.Mono;
 
-@RestController(value = "api")
+@RestController
 public class SupervisorController {
 	
 	@Value("${io.lightfeather.get.supervisor.url}")
@@ -33,6 +33,8 @@ public class SupervisorController {
 		.bodyToMono(new ParameterizedTypeReference<List<Supervisor>>() {});
 		
 		List<Supervisor> supervisors = response.block();
+		
+		System.out.println(supervisors);
 		
 		return null;
 	}
