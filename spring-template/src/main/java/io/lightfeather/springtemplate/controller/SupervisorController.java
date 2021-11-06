@@ -16,12 +16,13 @@ import io.lightfeather.springtemplate.model.Supervisor;
 import reactor.core.publisher.Mono;
 
 @RestController()
+@RequestMapping("/api")
 public class SupervisorController {
 	
 	@Value("${io.lightfeather.get.supervisor.url}")
 	private String getSupervisors;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String home() {
 		return "Hello World";
 	}
