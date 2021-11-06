@@ -16,7 +16,7 @@ import io.lightfeather.springtemplate.model.Supervisor;
 import reactor.core.publisher.Mono;
 
 @RestController()
-@RequestMapping("/api")
+@RequestMapping("api")
 public class SupervisorController {
 	
 	@Value("${io.lightfeather.get.supervisor.url}")
