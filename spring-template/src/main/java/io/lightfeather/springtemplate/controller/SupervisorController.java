@@ -15,7 +15,7 @@ import io.lightfeather.springtemplate.constants.URI;
 import io.lightfeather.springtemplate.model.Supervisor;
 import reactor.core.publisher.Mono;
 
-@RestController()
+@RestController
 @RequestMapping("api")
 public class SupervisorController {
 	
@@ -30,7 +30,7 @@ public class SupervisorController {
 	@Autowired
 	private WebClient.Builder webClientBuilder;
 	
-	@RequestMapping(URI.SUPERVISORS)
+	@RequestMapping(value = URI.SUPERVISORS, method = RequestMethod.GET)
 	public ResponseEntity<List<Supervisor>> getSupervisors() {
 	
 		Mono<List<Supervisor>> response = webClientBuilder.build()
