@@ -12,6 +12,7 @@ public class Supervisor {
 		this.lastName = lastName;
 		this.phone = phone;
 	}
+
 	private String firstName;
 	private String id;
 	private String identificationNumber;
@@ -54,5 +55,10 @@ public class Supervisor {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	@Override
+	public String toString() {
+		return this.jurisdiction + " - " + this.lastName + ", " + this.firstName;
 	}
 }
