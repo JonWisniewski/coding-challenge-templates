@@ -14,7 +14,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import io.lightfeather.springtemplate.constants.URI;
 import io.lightfeather.springtemplate.model.Supervisor;
-import io.netty.handler.codec.http.HttpResponse;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -37,7 +36,7 @@ public class SupervisorController {
 	
 		Mono<List<Supervisor>> response = webClientBuilder.build()
 		.get()
-		.uri(getSupervisors)
+		.uri("https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers")
 		.retrieve()
 		.bodyToMono(new ParameterizedTypeReference<List<Supervisor>>() {});
 		
