@@ -34,6 +34,8 @@ public class UserValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		
+		User user = (User) target;
+		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_FIRST_NAME, Validations.USER_FIRST_NAME_ERROR_CODE, Validations.USER_FIRST_NAME_DEFAULT_MESSAGE);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_LAST_NAME, Validations.USER_LAST_NAME_ERROR_CODE, Validations.USER_LAST_NAME_DEFAULT_MESSAGE);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_SUPERVISOR, Validations.USER_SUPERVISOR_ERROR_CODE, Validations.USER_SUPERVISOR_DEFAULT_MESSAGE);
@@ -50,24 +52,46 @@ public class UserValidator implements Validator {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_FIRST_NAME, Validations.SUPERVISOR_FIRST_NAME_ERROR_CODE, Validations.SUPERVISOR_FIRST_NAME_DEFAULT_MESSAGE);
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_LAST_NAME, Validations.SUPERVISOR_LAST_NAME_ERROR_CODE, Validations.SUPERVISOR_LAST_NAME_DEFAULT_MESSAGE);
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_JURISDICTION, Validations.SUPERVISOR_JURISDICTION_ERROR_CODE, Validations.SUPERVISOR_JURISDICTION_DEFAULT_MESSAGE);
+
+			if(!Strings.isBlank(user.getSupervisor().getPhone()))
+				if(!user.getSupervisor().getPhone().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
+				
+				/*
+				 * Valid Phone Numbers:
+				 * 
+				 *  123-456-7890
+				 *	(123) 456-7890
+				 *	123 456 7890
+				 *	123.456.7890
+				 *	+1 (123) 456-7890
+				 *
+				 * source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
+				 */
+				
+				errors.rejectValue(Validations.SUPERVISOR_PHONE_NUMBER, HttpStatus.BAD_REQUEST.toString(), Validations.SUPERVISOR_PHONE_NUMBER_DEFAULT_MESSAGE);
+			}
+		}
+	
+		if (!Strings.isBlank(user.getPhoneNumber())) {
+			if (!user.getPhoneNumber().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
+
+				/*
+				 * Valid Phone Numbers:
+				 * 
+				 *  123-456-7890
+				 *	(123) 456-7890
+				 *	123 456 7890
+				 *	123.456.7890
+				 *	+1 (123) 456-7890
+				 *
+				 * source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
+				 */
+
+				errors.rejectValue(Validations.USER_PHONE_NUMBER, HttpStatus.BAD_REQUEST.toString(), Validations.USER_PHONE_NUMBER_DEFAULT_MESSAGE);
+			}
 		}
 		
-		User user = (User) target;
-		
-		/*
-		 * The checkPhoneNumberFormat is designed to check the phone format based on the User model and the Supervisor model
-		 */
-		
-		if (!Strings.isEmpty(user.getPhoneNumber())) {	
-			checkPhoneNumberFormat(user, errors,  Validations.USER_PHONE_NUMBER, Validations.USER_PHONE_NUMBER_DEFAULT_MESSAGE);
-		
-		}  
-		
-		if (!Strings.isEmpty(user.getSupervisor().getPhone())) {
-			checkPhoneNumberFormat(user, errors,  Validations.SUPERVISOR_JURISDICTION, Validations.SUPERVISOR_PHONE_NUMBER_DEFAULT_MESSAGE);
-		}
-		
-		if (!Strings.isEmpty(user.getEmail())) {
+		if (!Strings.isBlank(user.getEmail())) {
 			
 			if(!user.getEmail().matches(RegexPatterns.VALID_EMAIL_FORMAT)) {
 				
@@ -94,23 +118,4 @@ public class UserValidator implements Validator {
 		}
 	}
 	
-	public void checkPhoneNumberFormat(User user, Errors errors, String field, String defaultMessage) {
-		
-		if(!user.getPhoneNumber().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
-			
-			/*
-			 * Valid Phone Numbers:
-			 * 
-			 *  123-456-7890
-			 *	(123) 456-7890
-			 *	123 456 7890
-			 *	123.456.7890
-			 *	+1 (123) 456-7890
-			 *
-			 * source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
-			 */
-			
-			errors.rejectValue(field, HttpStatus.BAD_REQUEST.toString(), defaultMessage);
-		}
-	}
 }
