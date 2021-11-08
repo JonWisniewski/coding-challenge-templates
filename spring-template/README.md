@@ -51,48 +51,48 @@ gradle bootRun
 9. Once PostMan is installed, please open the application. When it is opened, select GET and paste this url to the right of it: http://localhost:8080/api/supervisors and click the blue button that says "Send". This is what the output should look like:
 ```
 [
-    "b - Cremin , Elijah",
-    "b - Denesik , Kobe",
-    "b - Gerhold , Jaquan",
-    "b - Tremblay , Terrell",
-    "c - Hermiston , Laverna",
-    "d - Braun , Ida",
-    "e - Raynor , Pascale",
-    "e - Zieme , Donny",
-    "g - Ziemann , Clifton",
-    "h - Hoppe , Lisa",
-    "i - Bartell , Angelina",
-    "i - Bechtelar , Bruce",
-    "i - Hane , Kathlyn",
-    "j - Wisozk , Gunner",
-    "k - Jacobi , Lucious",
-    "l - Becker , Anastacio",
-    "l - Gutmann , Rodrick",
-    "l - McLaughlin , Dorothea",
-    "m - Huels , Lavern",
-    "n - Schulist , Cali",
-    "p - Wyman , Kirsten",
-    "q - Collier , Ezequiel",
-    "q - Larson , Makayla",
-    "r - Runolfsson , River",
-    "t - Lockman , Garnett",
-    "t - Volkman , Jett",
-    "u - Beer , Dolores",
-    "u - Deckow , Lavon",
-    "u - Lehner , Magdalena",
-    "u - Olson , Karson",
-    "x - Brakus , Zena",
-    "x - D'Amore , Maribel",
-    "x - Schamberger , Lydia",
-    "y - Sauer , Rashad",
-    "z - Oberbrunner , Ricky"
+    "b - Cremin, Elijah",
+    "b - Denesik, Kobe",
+    "b - Gerhold, Jaquan",
+    "b - Tremblay, Terrell",
+    "c - Hermiston, Laverna",
+    "d - Braun, Ida",
+    "e - Raynor, Pascale",
+    "e - Zieme, Donny",
+    "g - Ziemann, Clifton",
+    "h - Hoppe, Lisa",
+    "i - Bartell, Angelina",
+    "i - Bechtelar, Bruce",
+    "i - Hane, Kathlyn",
+    "j - Wisozk, Gunner",
+    "k - Jacobi, Lucious",
+    "l - Becker, Anastacio",
+    "l - Gutmann, Rodrick",
+    "l - McLaughlin, Dorothea",
+    "m - Huels, Lavern",
+    "n - Schulist, Cali",
+    "p - Wyman, Kirsten",
+    "q - Collier, Ezequiel",
+    "q - Larson, Makayla",
+    "r - Runolfsson, River",
+    "t - Lockman, Garnett",
+    "t - Volkman, Jett",
+    "u - Beer, Dolores",
+    "u - Deckow, Lavon",
+    "u - Lehner, Magdalena",
+    "u - Olson, Karson",
+    "x - Brakus, Zena",
+    "x - D'Amore, Maribel",
+    "x - Schamberger, Lydia",
+    "y - Sauer, Rashad",
+    "z - Oberbrunner, Ricky"
 ]
 ```
 10. After the GET method, let us try the POST endpoint. Change the method from GET to POST in the dropdown, and replace the url below with this: http://localhost:8080/api/submit
 11. For the POST method, we have to attach a body to the request. Click below the url on a word that says "Body". On the body screen, click "raw" then select the dropdown arrow and click "JSON".
 12. This first request that will be sent, will send back a 201 status code and a output in the command prompt similar to this:
 ```
-User [firstName=Jonathan, lastName=Wisniewski, email=jonathanWisniewski@gmail.com, phoneNumber=(330) 555-5555, supervisor=a - Heller , Robbie]
+User [firstName=Jonathan, lastName=Wisniewski, email=jonathanWisniewski@gmail.com, phoneNumber=(330) 555-5555, supervisor=a - Heller, Robbie]
 ```
 13. Click inside the empty white space below where you selected "JSON" and paste this JSON so that you will return the information above. Once you are done, click "Send" and see the response. 
 ```
@@ -269,48 +269,48 @@ docker run -d --name spring-template -p8080:8080 spring-template:latest
 9. Once PostMan is installed, please open the application. When it is opened, select GET and paste this url to the right of it: http://localhost:8080/api/supervisors and click the blue button that says "Send". This is what the output should look like:
 ```
 [
-    "b - Cremin , Elijah",
-    "b - Denesik , Kobe",
-    "b - Gerhold , Jaquan",
-    "b - Tremblay , Terrell",
-    "c - Hermiston , Laverna",
-    "d - Braun , Ida",
-    "e - Raynor , Pascale",
-    "e - Zieme , Donny",
-    "g - Ziemann , Clifton",
-    "h - Hoppe , Lisa",
-    "i - Bartell , Angelina",
-    "i - Bechtelar , Bruce",
-    "i - Hane , Kathlyn",
-    "j - Wisozk , Gunner",
-    "k - Jacobi , Lucious",
-    "l - Becker , Anastacio",
-    "l - Gutmann , Rodrick",
-    "l - McLaughlin , Dorothea",
-    "m - Huels , Lavern",
-    "n - Schulist , Cali",
-    "p - Wyman , Kirsten",
-    "q - Collier , Ezequiel",
-    "q - Larson , Makayla",
-    "r - Runolfsson , River",
-    "t - Lockman , Garnett",
-    "t - Volkman , Jett",
-    "u - Beer , Dolores",
-    "u - Deckow , Lavon",
-    "u - Lehner , Magdalena",
-    "u - Olson , Karson",
-    "x - Brakus , Zena",
-    "x - D'Amore , Maribel",
-    "x - Schamberger , Lydia",
-    "y - Sauer , Rashad",
-    "z - Oberbrunner , Ricky"
+    "b - Cremin, Elijah",
+    "b - Denesik, Kobe",
+    "b - Gerhold, Jaquan",
+    "b - Tremblay, Terrell",
+    "c - Hermiston, Laverna",
+    "d - Braun, Ida",
+    "e - Raynor, Pascale",
+    "e - Zieme, Donny",
+    "g - Ziemann, Clifton",
+    "h - Hoppe, Lisa",
+    "i - Bartell, Angelina",
+    "i - Bechtelar, Bruce",
+    "i - Hane, Kathlyn",
+    "j - Wisozk, Gunner",
+    "k - Jacobi, Lucious",
+    "l - Becker, Anastacio",
+    "l - Gutmann, Rodrick",
+    "l - McLaughlin, Dorothea",
+    "m - Huels, Lavern",
+    "n - Schulist, Cali",
+    "p - Wyman, Kirsten",
+    "q - Collier, Ezequiel",
+    "q - Larson, Makayla",
+    "r - Runolfsson, River",
+    "t - Lockman, Garnett",
+    "t - Volkman, Jett",
+    "u - Beer, Dolores",
+    "u - Deckow, Lavon",
+    "u - Lehner, Magdalena",
+    "u - Olson, Karson",
+    "x - Brakus, Zena",
+    "x - D'Amore, Maribel",
+    "x - Schamberger, Lydia",
+    "y - Sauer, Rashad",
+    "z - Oberbrunner, Ricky"
 ]
 ```
 10. After the GET method, let us try the POST endpoint. Change the method from GET to POST in the dropdown, and replace the url below with this: http://localhost:8080/api/submit
 11. For the POST method, we have to attach a body to the request. Click below the url on a word that says "Body". On the body screen, click "raw" then select the dropdown arrow and click "JSON".
 12. This first request that will be sent, will send back a 201 status code and a output in the docker command prompt similar to this:
 ```
-User [firstName=Jonathan, lastName=Wisniewski, email=jonathanWisniewski@gmail.com, phoneNumber=(330) 555-5555, supervisor=a - Heller , Robbie]
+User [firstName=Jonathan, lastName=Wisniewski, email=jonathanWisniewski@gmail.com, phoneNumber=(330) 555-5555, supervisor=a - Heller, Robbie]
 ```
 13. Click inside the empty white space below where you selected "JSON" and paste this JSON so that you will return the information above. Once you are done, click "Send" and see the response. 
 ```
@@ -485,48 +485,48 @@ docker-compose up
 9. Once PostMan is installed, please open the application. When it is opened, select GET and paste this url to the right of it: http://localhost:8080/api/supervisors and click the blue button that says "Send". This is what the output should look like:
 ```
 [
-    "b - Cremin , Elijah",
-    "b - Denesik , Kobe",
-    "b - Gerhold , Jaquan",
-    "b - Tremblay , Terrell",
-    "c - Hermiston , Laverna",
-    "d - Braun , Ida",
-    "e - Raynor , Pascale",
-    "e - Zieme , Donny",
-    "g - Ziemann , Clifton",
-    "h - Hoppe , Lisa",
-    "i - Bartell , Angelina",
-    "i - Bechtelar , Bruce",
-    "i - Hane , Kathlyn",
-    "j - Wisozk , Gunner",
-    "k - Jacobi , Lucious",
-    "l - Becker , Anastacio",
-    "l - Gutmann , Rodrick",
-    "l - McLaughlin , Dorothea",
-    "m - Huels , Lavern",
-    "n - Schulist , Cali",
-    "p - Wyman , Kirsten",
-    "q - Collier , Ezequiel",
-    "q - Larson , Makayla",
-    "r - Runolfsson , River",
-    "t - Lockman , Garnett",
-    "t - Volkman , Jett",
-    "u - Beer , Dolores",
-    "u - Deckow , Lavon",
-    "u - Lehner , Magdalena",
-    "u - Olson , Karson",
-    "x - Brakus , Zena",
-    "x - D'Amore , Maribel",
-    "x - Schamberger , Lydia",
-    "y - Sauer , Rashad",
-    "z - Oberbrunner , Ricky"
+    "b - Cremin, Elijah",
+    "b - Denesik, Kobe",
+    "b - Gerhold, Jaquan",
+    "b - Tremblay, Terrell",
+    "c - Hermiston, Laverna",
+    "d - Braun, Ida",
+    "e - Raynor, Pascale",
+    "e - Zieme, Donny",
+    "g - Ziemann, Clifton",
+    "h - Hoppe, Lisa",
+    "i - Bartell, Angelina",
+    "i - Bechtelar, Bruce",
+    "i - Hane, Kathlyn",
+    "j - Wisozk, Gunner",
+    "k - Jacobi, Lucious",
+    "l - Becker, Anastacio",
+    "l - Gutmann, Rodrick",
+    "l - McLaughlin, Dorothea",
+    "m - Huels, Lavern",
+    "n - Schulist, Cali",
+    "p - Wyman, Kirsten",
+    "q - Collier, Ezequiel",
+    "q - Larson, Makayla",
+    "r - Runolfsson, River",
+    "t - Lockman, Garnett",
+    "t - Volkman, Jett",
+    "u - Beer, Dolores",
+    "u - Deckow, Lavon",
+    "u - Lehner, Magdalena",
+    "u - Olson, Karson",
+    "x - Brakus, Zena",
+    "x - D'Amore, Maribel",
+    "x - Schamberger, Lydia",
+    "y - Sauer, Rashad",
+    "z - Oberbrunner, Ricky"
 ]
 ```
 10. After the GET method, let us try the POST endpoint. Change the method from GET to POST in the dropdown, and replace the url below with this: http://localhost:8080/api/submit
 11. For the POST method, we have to attach a body to the request. Click below the url on a word that says "Body". On the body screen, click "raw" then select the dropdown arrow and click "JSON".
 12. This first request that will be sent, will send back a 201 status code and a output in the command prompt similar to this:
 ```
-User [firstName=Jonathan, lastName=Wisniewski, email=jonathanWisniewski@gmail.com, phoneNumber=(330) 555-5555, supervisor=a - Heller , Robbie]
+User [firstName=Jonathan, lastName=Wisniewski, email=jonathanWisniewski@gmail.com, phoneNumber=(330) 555-5555, supervisor=a - Heller, Robbie]
 ```
 13. Click inside the empty white space below where you selected "JSON" and paste this JSON so that you will return the information above. Once you are done, click "Send" and see the response. 
 ```
