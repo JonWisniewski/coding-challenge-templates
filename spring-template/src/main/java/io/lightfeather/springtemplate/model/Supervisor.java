@@ -1,6 +1,30 @@
 package io.lightfeather.springtemplate.model;
 
+/**
+ * Supervisor model
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
+
 public class Supervisor {
+	
+	private String firstName;
+	private String id;
+	private String identificationNumber;
+	private String jurisdiction;
+	private String lastName;
+	private String phone;
+	
+	/**
+	 * Constructor with parameters of firstName, id, identificationNumber, jurisdiction, lastName, and phone
+	 * 
+	 * @param firstName the supervisors first name
+	 * @param id the supervisors auto incremented id
+	 * @param identificationNumber the supervisors UUID
+	 * @param jurisdiction the supervisors jurisdiction
+	 * @param phone the supervisors phone number
+	 */
 	
 	public Supervisor(String firstName, String id, String identificationNumber, String jurisdiction, String lastName,
 			String phone) {
@@ -12,12 +36,6 @@ public class Supervisor {
 		this.lastName = lastName;
 		this.phone = phone;
 	}
-	private String firstName;
-	private String id;
-	private String identificationNumber;
-	private String jurisdiction;
-	private String lastName;
-	private String phone;
 	
 	public String getFirstName() {
 		return firstName;
@@ -54,5 +72,12 @@ public class Supervisor {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	@Override
+	public String toString() {
+	    StringBuilder strBuilder = new StringBuilder();
+	    
+		return strBuilder.append(this.jurisdiction + " - " + this.lastName + " , " + this.firstName).toString();
 	}
 }
