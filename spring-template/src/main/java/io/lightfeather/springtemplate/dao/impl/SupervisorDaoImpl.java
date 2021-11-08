@@ -25,6 +25,7 @@ public class SupervisorDaoImpl implements SupervisorDao {
 	
 	@Override
 	public List<Supervisor> getAllSupervisors() {
+		
 		List<Supervisor> supervisorList = restTemplate
 		.exchange(configProperties.getAllSupervisorsUrlGet(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Supervisor>>() {})
 		.getBody();

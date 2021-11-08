@@ -1,14 +1,18 @@
 package io.lightfeather.springtemplate.config;
 
 import java.time.Duration;
+import org.slf4j.Logger;
 
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 
-import io.lightfeather.springtemplate.util.RestTemplateResponseErrorHandler;
+import io.lightfeather.springtemplate.util.UserValidator;
 
 @Configuration
 public class ConfigProperties {
@@ -18,9 +22,19 @@ public class ConfigProperties {
 	   return builder
 			  .setConnectTimeout(Duration.ofMillis(3000))
               .setReadTimeout(Duration.ofMillis(3000))
-              .errorHandler(new RestTemplateResponseErrorHandler())
               .build();
 	}
+	
+    @Bean
+    UserValidator validator() {
+        return new UserValidator();
+    }
+	
+    @Bean
+    @Scope("prototype")
+    public Logger logger(InjectionPoint injectionPoint){
+        return LoggerFactory.getLogger(injectionPoint.getMethodParameter().getContainingClass());
+    }
 
 	@Value("${io.lightfeather.get.supervisor.endpoint}")
 	private String allSupervisorsUrlGet;
