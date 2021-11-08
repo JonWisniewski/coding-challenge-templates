@@ -2,6 +2,13 @@ package io.lightfeather.springtemplate.model;
 
 public class Supervisor {
 	
+	private String firstName;
+	private String id;
+	private String identificationNumber;
+	private String jurisdiction;
+	private String lastName;
+	private String phone;
+	
 	public Supervisor(String firstName, String id, String identificationNumber, String jurisdiction, String lastName,
 			String phone) {
 		
@@ -12,13 +19,6 @@ public class Supervisor {
 		this.lastName = lastName;
 		this.phone = phone;
 	}
-
-	private String firstName;
-	private String id;
-	private String identificationNumber;
-	private String jurisdiction;
-	private String lastName;
-	private String phone;
 	
 	public String getFirstName() {
 		return firstName;
@@ -59,6 +59,8 @@ public class Supervisor {
 	
 	@Override
 	public String toString() {
-		return this.jurisdiction + " - " + this.lastName + ", " + this.firstName;
+	    StringBuilder strBuilder = new StringBuilder();
+	    
+		return strBuilder.append(this.jurisdiction + " - " + this.lastName + " , " + this.firstName).toString();
 	}
 }

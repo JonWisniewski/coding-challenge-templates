@@ -1,11 +1,7 @@
 package io.lightfeather.springtemplate.model;
 
-import java.io.Serializable;
+public class User {
 
-public class User implements Serializable{
-
-	private static final long serialVersionUID = 7733797548487330997L;
-	
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -50,5 +46,11 @@ public class User implements Serializable{
 
 	public void setSupervisor(String supervisor) {
 		this.supervisor = supervisor;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber="
+				+ phoneNumber + ", supervisor=" + supervisor + "]";
 	}
 }

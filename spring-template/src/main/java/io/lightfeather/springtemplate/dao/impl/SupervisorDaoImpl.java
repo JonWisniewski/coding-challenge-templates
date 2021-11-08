@@ -3,7 +3,6 @@ package io.lightfeather.springtemplate.dao.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Repository;
@@ -14,7 +13,6 @@ import io.lightfeather.springtemplate.dao.SupervisorDao;
 import io.lightfeather.springtemplate.model.Supervisor;
 
 @Repository
-@ConfigurationProperties(prefix="io.lightfeather.supervisor")
 public class SupervisorDaoImpl implements SupervisorDao {
 
 	@Autowired

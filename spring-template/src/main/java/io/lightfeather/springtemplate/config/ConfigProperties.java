@@ -1,15 +1,11 @@
 package io.lightfeather.springtemplate.config;
 
 import java.time.Duration;
-import org.slf4j.Logger;
 
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.web.client.RestTemplate;
 
 import io.lightfeather.springtemplate.util.UserValidator;
@@ -28,12 +24,6 @@ public class ConfigProperties {
     @Bean
     UserValidator validator() {
         return new UserValidator();
-    }
-	
-    @Bean
-    @Scope("prototype")
-    public Logger logger(InjectionPoint injectionPoint){
-        return LoggerFactory.getLogger(injectionPoint.getMethodParameter().getContainingClass());
     }
 
 	@Value("${io.lightfeather.get.supervisor.endpoint}")

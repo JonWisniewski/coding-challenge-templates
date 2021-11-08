@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.lightfeather.springtemplate.constants.RegexPatterns;
 import io.lightfeather.springtemplate.dao.SupervisorDao;
 import io.lightfeather.springtemplate.model.Supervisor;
 import io.lightfeather.springtemplate.service.SupervisorService;
@@ -26,7 +27,7 @@ public class SupervisorServiceImpl implements SupervisorService {
 				.sorted(Comparator.comparing(Supervisor::getJurisdiction)
 				.thenComparing(Supervisor::getLastName)
 				.thenComparing(Supervisor::getFirstName))
-				.filter(Supervisor -> !Supervisor.getJurisdiction().matches(".*\\d.*"))
+				.filter(Supervisor -> !Supervisor.getJurisdiction().matches(RegexPatterns.FIND_DIGITS))
 				.collect(Collectors.toList());
 
 		List<String> supervisorsListString = supervisorsListSorted.stream()
@@ -35,5 +36,4 @@ public class SupervisorServiceImpl implements SupervisorService {
 		
 		return supervisorsListString;
 	}
-
 }

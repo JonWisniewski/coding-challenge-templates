@@ -7,6 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import io.lightfeather.springtemplate.constants.RegexPatterns;
+import io.lightfeather.springtemplate.constants.Validations;
 import io.lightfeather.springtemplate.model.User;
 
 public class UserValidator implements Validator {
@@ -21,13 +22,15 @@ public class UserValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "firstName.empty", "First Name field is missing value");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "lastName.empty", "Last Name field is missing value");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "supervisor", "supervisor.empty", "Supervisor field is missing value");
+		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_FIRST_NAME, Validations.USER_FIRST_NAME_ERROR_CODE, Validations.USER_FIRST_NAME_DEFAULT_MESSAGE);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_LAST_NAME, Validations.USER_LAST_NAME_ERROR_CODE, Validations.USER_LAST_NAME_DEFAULT_MESSAGE);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_SUPERVISOR, Validations.USER_SUPERVISOR_ERROR_CODE, Validations.USER_PHONE_NUMBER_DEFAULT_MESSAGE);
 		
 		User user = (User) target;
 		if (!Strings.isEmpty(user.getPhoneNumber())) {
 			if(!user.getPhoneNumber().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
+				
 				/*
 				 * Valid Phone Numbers:
 				 * 
@@ -39,12 +42,14 @@ public class UserValidator implements Validator {
 				 *
 				 * source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
 				 */
-				errors.rejectValue("phoneNumber", HttpStatus.BAD_REQUEST.toString(), "Invalid phone number format");
+				
+				errors.rejectValue(Validations.USER_PHONE_NUMBER, HttpStatus.BAD_REQUEST.toString(), Validations.USER_PHONE_NUMBER_DEFAULT_MESSAGE);
 			}
 		}
 		
 		if (!Strings.isEmpty(user.getEmail())) {
 			if(!user.getEmail().matches(RegexPatterns.VALID_EMAIL_FORMAT)) {
+				
 				/*
 				 * Email Rules:
 				 * 
@@ -62,7 +67,8 @@ public class UserValidator implements Validator {
 				 * Source: https://www.baeldung.com/java-email-validation-regex
 				 * 
 				 */
-				errors.rejectValue("email", HttpStatus.BAD_REQUEST.toString(), "Invalid email format");
+				
+				errors.rejectValue(Validations.USER_EMAIL, HttpStatus.BAD_REQUEST.toString(), Validations.USER_EMAIL_DEFAULT_MESSAGE);
 			}
 		}
 	}
