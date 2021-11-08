@@ -1,5 +1,12 @@
 package io.lightfeather.springtemplate.config;
 
+/**
+ * Configuration Properties
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
+
 import java.time.Duration;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +19,7 @@ import io.lightfeather.springtemplate.util.UserValidator;
 
 @Configuration
 public class ConfigProperties {
-
+	
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 	   return builder

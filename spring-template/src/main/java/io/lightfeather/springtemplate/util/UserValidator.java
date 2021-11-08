@@ -10,13 +10,24 @@ import io.lightfeather.springtemplate.constants.RegexPatterns;
 import io.lightfeather.springtemplate.constants.Validations;
 import io.lightfeather.springtemplate.model.User;
 
+/**
+ * UserValidator is a validation class used to check if the requestBody of api/submit contains any errors
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
+
+
 public class UserValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
+		
 		if(clazz.isInstance(User.class)) {
+			
 			return true;
 		}
+		
 		return false;
 	}
 
@@ -25,29 +36,39 @@ public class UserValidator implements Validator {
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_FIRST_NAME, Validations.USER_FIRST_NAME_ERROR_CODE, Validations.USER_FIRST_NAME_DEFAULT_MESSAGE);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_LAST_NAME, Validations.USER_LAST_NAME_ERROR_CODE, Validations.USER_LAST_NAME_DEFAULT_MESSAGE);
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_SUPERVISOR, Validations.USER_SUPERVISOR_ERROR_CODE, Validations.USER_PHONE_NUMBER_DEFAULT_MESSAGE);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_SUPERVISOR, Validations.USER_SUPERVISOR_ERROR_CODE, Validations.USER_SUPERVISOR_DEFAULT_MESSAGE);
+		
+		if (!errors.hasFieldErrors(Validations.USER_SUPERVISOR)) {
+			
+			/*
+			 * Since firstName, lastName, and jurisdiction are required for Supervisor model, 
+			 * I transfered the requirements to the User model when submitting a POST request for personal information
+			 * 
+			 * As of now id, identificationNumber, and phone are not required so I will not validate it
+			 */
+			
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_FIRST_NAME, Validations.SUPERVISOR_FIRST_NAME_ERROR_CODE, Validations.SUPERVISOR_FIRST_NAME_DEFAULT_MESSAGE);
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_LAST_NAME, Validations.SUPERVISOR_LAST_NAME_ERROR_CODE, Validations.SUPERVISOR_LAST_NAME_DEFAULT_MESSAGE);
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_JURISDICTION, Validations.SUPERVISOR_JURISDICTION_ERROR_CODE, Validations.SUPERVISOR_JURISDICTION_DEFAULT_MESSAGE);
+		}
 		
 		User user = (User) target;
-		if (!Strings.isEmpty(user.getPhoneNumber())) {
-			if(!user.getPhoneNumber().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
-				
-				/*
-				 * Valid Phone Numbers:
-				 * 
-				 *  123-456-7890
-				 *	(123) 456-7890
-				 *	123 456 7890
-				 *	123.456.7890
-				 *	+1 (123) 456-7890
-				 *
-				 * source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
-				 */
-				
-				errors.rejectValue(Validations.USER_PHONE_NUMBER, HttpStatus.BAD_REQUEST.toString(), Validations.USER_PHONE_NUMBER_DEFAULT_MESSAGE);
-			}
+		
+		/*
+		 * The checkPhoneNumberFormat is designed to check the phone format based on the User model and the Supervisor model
+		 */
+		
+		if (!Strings.isEmpty(user.getPhoneNumber())) {	
+			checkPhoneNumberFormat(user, errors,  Validations.USER_PHONE_NUMBER, Validations.USER_PHONE_NUMBER_DEFAULT_MESSAGE);
+		
+		}  
+		
+		if (!Strings.isEmpty(user.getSupervisor().getPhone())) {
+			checkPhoneNumberFormat(user, errors,  Validations.SUPERVISOR_JURISDICTION, Validations.SUPERVISOR_PHONE_NUMBER_DEFAULT_MESSAGE);
 		}
 		
 		if (!Strings.isEmpty(user.getEmail())) {
+			
 			if(!user.getEmail().matches(RegexPatterns.VALID_EMAIL_FORMAT)) {
 				
 				/*
@@ -70,6 +91,26 @@ public class UserValidator implements Validator {
 				
 				errors.rejectValue(Validations.USER_EMAIL, HttpStatus.BAD_REQUEST.toString(), Validations.USER_EMAIL_DEFAULT_MESSAGE);
 			}
+		}
+	}
+	
+	public void checkPhoneNumberFormat(User user, Errors errors, String field, String defaultMessage) {
+		
+		if(!user.getPhoneNumber().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
+			
+			/*
+			 * Valid Phone Numbers:
+			 * 
+			 *  123-456-7890
+			 *	(123) 456-7890
+			 *	123 456 7890
+			 *	123.456.7890
+			 *	+1 (123) 456-7890
+			 *
+			 * source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
+			 */
+			
+			errors.rejectValue(field, HttpStatus.BAD_REQUEST.toString(), defaultMessage);
 		}
 	}
 }

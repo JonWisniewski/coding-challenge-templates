@@ -1,5 +1,12 @@
 package io.lightfeather.springtemplate.constants;
 
+/**
+ * A class that is used for Regex Pattern Constants
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
+
 public class RegexPatterns {
 
 	public final static String USA_VALID_PHONE_NUMBER_FORMAT = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$";

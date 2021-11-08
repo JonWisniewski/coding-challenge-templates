@@ -12,7 +12,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import io.lightfeather.springtemplate.constants.DateFormats;
-import io.lightfeather.springtemplate.controller.ResponseStatusErrorException;
+
+/**
+ * RestErrorHandler is used to handler the errors when the exceptions listed in the class are thrown
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
 
 @RestControllerAdvice
 public class RestErrorHandler {

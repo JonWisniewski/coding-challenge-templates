@@ -1,5 +1,12 @@
 package io.lightfeather.springtemplate.model;
 
+/**
+ * Supervisor model
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
+
 public class Supervisor {
 	
 	private String firstName;
@@ -8,6 +15,16 @@ public class Supervisor {
 	private String jurisdiction;
 	private String lastName;
 	private String phone;
+	
+	/**
+	 * Constructor with parameters of firstName, id, identificationNumber, jurisdiction, lastName, and phone
+	 * 
+	 * @param firstName the supervisors first name
+	 * @param id the supervisors auto incremented id
+	 * @param identificationNumber the supervisors UUID
+	 * @param jurisdiction the supervisors jurisdiction
+	 * @param phone the supervisors phone number
+	 */
 	
 	public Supervisor(String firstName, String id, String identificationNumber, String jurisdiction, String lastName,
 			String phone) {

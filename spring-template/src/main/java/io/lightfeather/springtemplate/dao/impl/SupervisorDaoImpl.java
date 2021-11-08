@@ -1,5 +1,12 @@
 package io.lightfeather.springtemplate.dao.impl;
 
+/**
+ * SupervisorDaoImpl is an implementation of SupervisorDao
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

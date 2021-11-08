@@ -12,6 +12,13 @@ import io.lightfeather.springtemplate.dao.SupervisorDao;
 import io.lightfeather.springtemplate.model.Supervisor;
 import io.lightfeather.springtemplate.service.SupervisorService;
 
+/**
+ * SupervisorServiceImpl is an implementation of SupervisorService
+ * 
+ * @author Jonathan Wisniewski
+ * @since  11-08-2021
+ */
+
 @Service
 public class SupervisorServiceImpl implements SupervisorService {
 
