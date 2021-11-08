@@ -14,38 +14,36 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import io.lightfeather.springtemplate.constants.DateFormats;
 
 /**
- * RestErrorHandler is used to handler the errors when the exceptions listed in the class are thrown
+ * RestErrorHandler is used to handler the errors when the exceptions listed in
+ * the class are thrown
  * 
  * @author Jonathan Wisniewski
- * @since  11-08-2021
+ * @since 11-08-2021
  */
 
 @RestControllerAdvice
 public class RestErrorHandler {
 
 	private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DateFormats.DEFAULT_DATE_FORMAT);
-	
+
 	@ExceptionHandler(ResponseStatusErrorException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorMessage handleException(ResponseStatusErrorException ex) {
-		List<String> defaultMessageList = ex.getErrors().stream().map(error -> error.getDefaultMessage()).collect(Collectors.toList());
-		
-	    ErrorMessage message = new ErrorMessage(
-	            HttpStatus.BAD_REQUEST.value(),
-	            simpleDateFormat.format(new Date()),
-	            defaultMessageList);
-	    
-		return message;	
+		List<String> defaultMessageList = ex.getErrors().stream().map(error -> error.getDefaultMessage())
+				.collect(Collectors.toList());
+
+		ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), simpleDateFormat.format(new Date()),
+				defaultMessageList);
+
+		return message;
 	}
-	
+
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public ErrorMessage handleException(Exception ex) {
-	    ErrorMessage message = new ErrorMessage(
-	            HttpStatus.INTERNAL_SERVER_ERROR.value(),
-	            simpleDateFormat.format(new Date()),
-	            ex.getMessage());
-	    
-		return message;	
+		ErrorMessage message = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+				simpleDateFormat.format(new Date()), ex.getMessage());
+
+		return message;
 	}
 }

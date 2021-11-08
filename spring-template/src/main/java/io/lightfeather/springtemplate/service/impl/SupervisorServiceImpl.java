@@ -16,7 +16,7 @@ import io.lightfeather.springtemplate.service.SupervisorService;
  * SupervisorServiceImpl is an implementation of SupervisorService
  * 
  * @author Jonathan Wisniewski
- * @since  11-08-2021
+ * @since 11-08-2021
  */
 
 @Service
@@ -24,23 +24,21 @@ public class SupervisorServiceImpl implements SupervisorService {
 
 	@Autowired
 	private SupervisorDao supervisorDao;
-	
+
 	@Override
 	public List<String> getAllSupervisors() {
-		
+
 		List<Supervisor> supervisorsList = supervisorDao.getAllSupervisors();
-		
+
 		List<Supervisor> supervisorsListSorted = supervisorsList.stream()
-				.sorted(Comparator.comparing(Supervisor::getJurisdiction)
-				.thenComparing(Supervisor::getLastName)
+				.sorted(Comparator.comparing(Supervisor::getJurisdiction).thenComparing(Supervisor::getLastName)
 				.thenComparing(Supervisor::getFirstName))
 				.filter(Supervisor -> !Supervisor.getJurisdiction().matches(RegexPatterns.FIND_DIGITS))
 				.collect(Collectors.toList());
 
-		List<String> supervisorsListString = supervisorsListSorted.stream()
-				.map(Supervisor:: toString)
+		List<String> supervisorsListString = supervisorsListSorted.stream().map(Supervisor::toString)
 				.collect(Collectors.toList());
-		
+
 		return supervisorsListString;
 	}
 }

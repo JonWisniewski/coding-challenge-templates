@@ -4,7 +4,7 @@ package io.lightfeather.springtemplate.model;
  * User model
  * 
  * @author Jonathan Wisniewski
- * @since  11-08-2021
+ * @since 11-08-2021
  */
 
 public class User {
@@ -72,7 +72,7 @@ public class User {
 	public void setSupervisor(Supervisor supervisor) {
 		this.supervisor = supervisor;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber="

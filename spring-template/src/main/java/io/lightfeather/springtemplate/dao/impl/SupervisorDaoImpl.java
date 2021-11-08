@@ -24,17 +24,17 @@ public class SupervisorDaoImpl implements SupervisorDao {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Autowired
 	private ConfigProperties configProperties;
-	
+
 	@Override
 	public List<Supervisor> getAllSupervisors() {
-		
-		List<Supervisor> supervisorList = restTemplate
-		.exchange(configProperties.getAllSupervisorsUrlGet(), HttpMethod.GET, null, new ParameterizedTypeReference<List<Supervisor>>() {})
-		.getBody();
-		
+
+		List<Supervisor> supervisorList = restTemplate.exchange(configProperties.getAllSupervisorsUrlGet(),
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<Supervisor>>() {
+				}).getBody();
+
 		return supervisorList;
 	}
 }

@@ -19,19 +19,16 @@ import io.lightfeather.springtemplate.util.UserValidator;
 
 @Configuration
 public class ConfigProperties {
-	
+
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-	   return builder
-			  .setConnectTimeout(Duration.ofMillis(3000))
-              .setReadTimeout(Duration.ofMillis(3000))
-              .build();
+		return builder.setConnectTimeout(Duration.ofMillis(3000)).setReadTimeout(Duration.ofMillis(3000)).build();
 	}
-	
-    @Bean
-    UserValidator validator() {
-        return new UserValidator();
-    }
+
+	@Bean
+	UserValidator validator() {
+		return new UserValidator();
+	}
 
 	@Value("${io.lightfeather.get.supervisor.endpoint}")
 	private String allSupervisorsUrlGet;

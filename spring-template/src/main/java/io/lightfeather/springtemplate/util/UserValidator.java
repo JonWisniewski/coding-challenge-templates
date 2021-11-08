@@ -17,17 +17,16 @@ import io.lightfeather.springtemplate.model.User;
  * @since  11-08-2021
  */
 
-
 public class UserValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		
-		if(clazz.isInstance(User.class)) {
-			
+
+		if (clazz.isInstance(User.class)) {
+
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -35,11 +34,14 @@ public class UserValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		
 		User user = (User) target;
-		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_FIRST_NAME, Validations.USER_FIRST_NAME_ERROR_CODE, Validations.USER_FIRST_NAME_DEFAULT_MESSAGE);
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_LAST_NAME, Validations.USER_LAST_NAME_ERROR_CODE, Validations.USER_LAST_NAME_DEFAULT_MESSAGE);
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_SUPERVISOR, Validations.USER_SUPERVISOR_ERROR_CODE, Validations.USER_SUPERVISOR_DEFAULT_MESSAGE);
-		
+
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_FIRST_NAME,
+				Validations.USER_FIRST_NAME_ERROR_CODE, Validations.USER_FIRST_NAME_DEFAULT_MESSAGE);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_LAST_NAME,
+				Validations.USER_LAST_NAME_ERROR_CODE, Validations.USER_LAST_NAME_DEFAULT_MESSAGE);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.USER_SUPERVISOR,
+				Validations.USER_SUPERVISOR_ERROR_CODE, Validations.USER_SUPERVISOR_DEFAULT_MESSAGE);
+
 		if (!errors.hasFieldErrors(Validations.USER_SUPERVISOR)) {
 			
 			/*
@@ -48,14 +50,17 @@ public class UserValidator implements Validator {
 			 * 
 			 * As of now id, identificationNumber, and phone are not required so I will not validate it
 			 */
-			
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_FIRST_NAME, Validations.SUPERVISOR_FIRST_NAME_ERROR_CODE, Validations.SUPERVISOR_FIRST_NAME_DEFAULT_MESSAGE);
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_LAST_NAME, Validations.SUPERVISOR_LAST_NAME_ERROR_CODE, Validations.SUPERVISOR_LAST_NAME_DEFAULT_MESSAGE);
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_JURISDICTION, Validations.SUPERVISOR_JURISDICTION_ERROR_CODE, Validations.SUPERVISOR_JURISDICTION_DEFAULT_MESSAGE);
 
-			if(!Strings.isBlank(user.getSupervisor().getPhone()))
-				if(!user.getSupervisor().getPhone().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
-				
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_FIRST_NAME,
+					Validations.SUPERVISOR_FIRST_NAME_ERROR_CODE, Validations.SUPERVISOR_FIRST_NAME_DEFAULT_MESSAGE);
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_LAST_NAME,
+					Validations.SUPERVISOR_LAST_NAME_ERROR_CODE, Validations.SUPERVISOR_LAST_NAME_DEFAULT_MESSAGE);
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, Validations.SUPERVISOR_JURISDICTION,
+					Validations.SUPERVISOR_JURISDICTION_ERROR_CODE, Validations.SUPERVISOR_JURISDICTION_DEFAULT_MESSAGE);
+
+			if (!Strings.isBlank(user.getSupervisor().getPhone()))
+				if (!user.getSupervisor().getPhone().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
+
 				/*
 				 * Valid Phone Numbers:
 				 * 
@@ -68,10 +73,11 @@ public class UserValidator implements Validator {
 				 * source: https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
 				 */
 				
-				errors.rejectValue(Validations.SUPERVISOR_PHONE_NUMBER, HttpStatus.BAD_REQUEST.toString(), Validations.SUPERVISOR_PHONE_NUMBER_DEFAULT_MESSAGE);
+				errors.rejectValue(Validations.SUPERVISOR_PHONE_NUMBER, HttpStatus.BAD_REQUEST.toString(),
+						Validations.SUPERVISOR_PHONE_NUMBER_DEFAULT_MESSAGE);
 			}
 		}
-	
+
 		if (!Strings.isBlank(user.getPhoneNumber())) {
 			if (!user.getPhoneNumber().matches(RegexPatterns.USA_VALID_PHONE_NUMBER_FORMAT)) {
 
@@ -91,8 +97,7 @@ public class UserValidator implements Validator {
 			}
 		}
 		
-		if (!Strings.isBlank(user.getEmail())) {
-			
+		if (!Strings.isBlank(user.getEmail())) {			
 			if(!user.getEmail().matches(RegexPatterns.VALID_EMAIL_FORMAT)) {
 				
 				/*
@@ -116,6 +121,5 @@ public class UserValidator implements Validator {
 				errors.rejectValue(Validations.USER_EMAIL, HttpStatus.BAD_REQUEST.toString(), Validations.USER_EMAIL_DEFAULT_MESSAGE);
 			}
 		}
-	}
-	
+	}	
 }
