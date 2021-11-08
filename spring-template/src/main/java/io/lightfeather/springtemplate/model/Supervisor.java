@@ -78,6 +78,6 @@ public class Supervisor {
 	public String toString() {
 	    StringBuilder strBuilder = new StringBuilder();
 	    
-		return strBuilder.append(this.jurisdiction + " - " + this.lastName + " , " + this.firstName).toString();
+		return strBuilder.append(this.jurisdiction + " - " + this.lastName + ", " + this.firstName).toString();
 	}
 }
