@@ -36,7 +36,7 @@ public class Validations {
 	public static final String SUPERVISOR_FIRST_NAME = "supervisor.firstName";
 	public static final String SUPERVISOR_LAST_NAME = "supervisor.lastName";
 	public static final String SUPERVISOR_JURISDICTION = "supervisor.jurisdiction";
-	public static final String SUPERVISOR_PHONE_NUMBER = "supervisor.phoneNumber";
+	public static final String SUPERVISOR_PHONE_NUMBER = "supervisor.phone";
 	
 	// Supervisor error code
 	
